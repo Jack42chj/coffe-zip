@@ -128,6 +128,9 @@ https://velog.io/@hojinch99/series/야간-카페-지도-서비스
 │  │  ├─ logo-512X512.png
 │  │  └─ logo-72X72.png
 │  ├─ manifest.json
+│  ├─ offline.html
+│  ├─ og
+│  │  └─ oglogo.png
 │  ├─ svg
 │  │  ├─ allday.svg
 │  │  ├─ arrow.svg
@@ -139,9 +142,10 @@ https://velog.io/@hojinch99/series/야간-카페-지도-서비스
 │  │  ├─ current.svg
 │  │  ├─ location.svg
 │  │  ├─ muin.svg
+│  │  ├─ muinallday.svg
 │  │  ├─ parttime.svg
-│  │  ├─ search.svg
-│  │  └─ unman.svg
+│  │  └─ search.svg
+│  ├─ sw.js
 │  └─ webp
 │     ├─ kakaomap.webp
 │     ├─ loading.webp
@@ -171,7 +175,6 @@ https://velog.io/@hojinch99/series/야간-카페-지도-서비스
 │  ├─ supabase
 │  │  └─ supabase.ts
 │  └─ vite-env.d.ts
-├─ sw.js
 ├─ tsconfig.json
 ├─ tsconfig.node.json
 ├─ vite.config.ts
