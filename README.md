@@ -150,6 +150,7 @@ https://velog.io/@hojinch99/series/야간-카페-지도-서비스
 │     ├─ kakaomap.webp
 │     ├─ loading.webp
 │     ├─ logo.webp
+│     └─ web-logo.webp
 │     └─ wrapper.webp
 ├─ README.md
 ├─ robots.txt
