@@ -86,15 +86,9 @@ const Logo = styled.div`
     }
     display: flex;
     align-items: center;
-    gap: 16px;
     padding: 0px 20px;
-    margin-top: 40px;
-`;
-
-const LogoTitle = styled.div`
-    font-size: 1.6rem;
-    font-weight: bold;
-    color: #0a0b10;
+    margin-top: 20px;
+    cursor: pointer;
 `;
 
 const Home = () => {
@@ -159,16 +153,13 @@ const Home = () => {
             <KakaoMap list={paginatedCafeList[currentPage]} />
             <Container className={openList ? "slide-down" : "slide-up"}>
                 <Box>
-                    <Logo>
-                        <div>
-                            <img
-                                alt="logo-icon"
-                                src="/webp/logo.webp"
-                                width="48"
-                                height="48"
-                            />
-                        </div>
-                        <LogoTitle>카페 찾는 부엉이</LogoTitle>
+                    <Logo onClick={() => window.location.reload()}>
+                        <img
+                            alt="web-logo-icon"
+                            src="/webp/web-logo.webp"
+                            width="307px"
+                            height="56px"
+                        />
                     </Logo>
                     <Search>
                         <SearchBox />
