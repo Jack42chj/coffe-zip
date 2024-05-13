@@ -1,7 +1,7 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import styled, { createGlobalStyle } from "styled-components";
 import reset from "styled-reset";
-import { Suspense, lazy, useEffect } from "react";
+import { Suspense, lazy } from "react";
 import Loading from "./components/loading";
 
 const Home = lazy(() => import("./pages/Home"));
