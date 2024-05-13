@@ -45,20 +45,6 @@ const Wrapper = styled.div`
 `;
 
 const App = () => {
-    useEffect(() => {
-        navigator.serviceWorker
-            .register("/sw.js")
-            .then((registration) => {
-                console.log(
-                    "Service worker registration succeeded:",
-                    registration
-                );
-            })
-            .catch((err) => {
-                console.log("Service worker registration failed:", err);
-            });
-    }, []);
-
     return (
         <Suspense fallback={<Loading />}>
             <Wrapper>
