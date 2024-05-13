@@ -1,7 +1,7 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import styled, { createGlobalStyle } from "styled-components";
 import reset from "styled-reset";
-import { Suspense, lazy } from "react";
+import { Suspense, lazy, useEffect } from "react";
 import Loading from "./components/loading";
 
 const Home = lazy(() => import("./pages/Home"));
@@ -45,6 +45,20 @@ const Wrapper = styled.div`
 `;
 
 const App = () => {
+    useEffect(() => {
+        navigator.serviceWorker
+            .register("/sw.js")
+            .then((registration) => {
+                console.log(
+                    "Service worker registration succeeded:",
+                    registration
+                );
+            })
+            .catch((err) => {
+                console.log("Service worker registration failed:", err);
+            });
+    }, []);
+
     return (
         <Suspense fallback={<Loading />}>
             <Wrapper>
