@@ -1,0 +1,10 @@
+{
+    "routes": [
+        {
+            "src": "/sw.js",
+            "headers": {
+                "Cache-Control": "public, max-age=0, must-revalidate"
+            }
+        }
+    ]
+}
