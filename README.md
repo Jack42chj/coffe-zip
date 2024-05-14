@@ -91,10 +91,17 @@ https://velog.io/@hojinch99/series/야간-카페-지도-서비스
   <img src="https://img.shields.io/badge/reactrouter-CA4245?style=for-the-badge&logo=reactrouter&logoColor=white">
 </div>
 
+## ⚙️ CI/CD
+
+<div>
+  <img src="https://img.shields.io/badge/githubactions-2088FF?style=for-the-badge&logo=githubactions&logoColor=white">
+  <img src="https://img.shields.io/badge/vite-646CFF?style=for-the-badge&logo=vite&logoColor=white">
+</div>
+
 ### 🪄 디자인(Design)
 
 <div>
-  <img src="https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white">
+  <img src="https://img.shields.io/badge/vercel-000000?style=for-the-badge&logo=vercel&logoColor=white">
 </div>
 
 ### 🗺️ 외부 API(External API)
