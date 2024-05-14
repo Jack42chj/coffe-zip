@@ -44,7 +44,7 @@ https://velog.io/@hojinch99/series/야간-카페-지도-서비스
 -   공유 버튼 클릭 후 아래 홈 화면에 추가
 -   바탕화면 또는 홈 화면에 추가된 앱으로 실행
 
-#### 🖥️ Web & Chrome
+#### 🌐 Web & Chrome
 
 -   Chrome 환경에서 https://coffeezip.vercel.app 접속
 -   검색창 우측의 위치한 북마크 추가 버튼 좌측 클릭 후 앱 설치
@@ -57,10 +57,12 @@ https://velog.io/@hojinch99/series/야간-카페-지도-서비스
 -   **UI 및 기능 구현 : 2024.04.24 ~ 2024.05.06**
 -   **DB 구현 및 데이터 수집 : 2024.05.07 ~ 현재 수집 중**
 
-## 멤버 구성(Members)
+## 🙋 멤버 구성(Members)
 
 -   **최호진(hojinch99@gmail.com) - 개발, 디자인, 카페 데이터 수집**
 -   **김동주(gggg8657@gmail.com) - PM, 디자인**
+-   **정우성(ij5943@naver.com) - 카페 데이터 수집**
+-   **나민엽(naminyeop@gmail.com) - 카페 데이터 수집**
 
 ## 📚 기술 스택(Stacks)
 
@@ -91,7 +93,7 @@ https://velog.io/@hojinch99/series/야간-카페-지도-서비스
   <img src="https://img.shields.io/badge/reactrouter-CA4245?style=for-the-badge&logo=reactrouter&logoColor=white">
 </div>
 
-### ⚙️ CI/CD
+### 🗄️ CI/CD
 
 <div>
   <img src="https://img.shields.io/badge/githubactions-2088FF?style=for-the-badge&logo=githubactions&logoColor=white">
