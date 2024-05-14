@@ -57,6 +57,30 @@ const IconWrapper = styled.div`
     }
 `;
 
+const NearbyIcon = styled.div`
+    position: absolute;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    background-color: #ffffff;
+    z-index: 998;
+    padding: 8px 12px;
+    border-radius: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 14px;
+    gap: 6px;
+    &:hover {
+        opacity: 0.9;
+    }
+    @media (max-width: 1024px) {
+        top: 19%;
+    }
+    @media (min-width: 1025px) {
+        bottom: 10%;
+    }
+`;
+
 const SliderWrapper = styled.div`
     position: absolute;
     cursor: pointer;
@@ -79,13 +103,21 @@ const SliderWrapper = styled.div`
 `;
 
 const KakaoMap: React.FC<{ list: ListProps[] }> = ({ list }) => {
-    const { location, selected, openList, setOpenList, setSelected } =
-        MapStore();
+    const {
+        location,
+        selected,
+        openList,
+        setOpenList,
+        setSelected,
+        setLocation,
+    } = MapStore();
     const [myMap, setMyMap] = useState<kakao.maps.Map | null>(null);
     const [markers, setMarkers] = useState<kakao.maps.Marker[]>([]);
     const [ctOverlay, setCtOverlay] = useState<kakao.maps.CustomOverlay | null>(
         null
     );
+    const [initial, setInitial] = useState(false);
+    const [visible, setVisible] = useState(false);
     const kakao = window.kakao;
 
     // 최초 로딩 시 지도 생성
@@ -102,6 +134,7 @@ const KakaoMap: React.FC<{ list: ListProps[] }> = ({ list }) => {
                 };
                 const initialMap = new kakao.maps.Map(container, options);
                 setMyMap(initialMap);
+                setInitial(true);
                 // 현재 사용자 위치 구하고 마커로 나타내는 함수
                 navigator.geolocation.getCurrentPosition((position) => {
                     const { latitude, longitude } = position.coords;
@@ -201,15 +234,27 @@ const KakaoMap: React.FC<{ list: ListProps[] }> = ({ list }) => {
                     overlay.setMap(null)
                 );
             }
+            kakao.maps.event.addListener(myMap, "center_changed", () => {
+                const center = myMap.getCenter();
+                if (
+                    center.getLat().toFixed(3) !== location[0].toFixed(3) &&
+                    center.getLng().toFixed(3) !== location[1].toFixed(3)
+                ) {
+                    setVisible(true);
+                } else {
+                    setVisible(false);
+                }
+            });
         }
         //eslint-disable-next-line react-hooks/exhaustive-deps
     }, [list]);
 
     // 최초 지도가 생성된 이후에 중심 좌표 현재 사용자 위치로 이동
     useEffect(() => {
-        if (location[0] && location[1] && myMap) {
+        if (location[0] && location[1] && myMap && initial) {
             const newCenter = new kakao.maps.LatLng(location[0], location[1]);
             myMap.setCenter(newCenter);
+            setInitial(false);
         }
         //eslint-disable-next-line react-hooks/exhaustive-deps
     }, [myMap, location]);
@@ -235,6 +280,15 @@ const KakaoMap: React.FC<{ list: ListProps[] }> = ({ list }) => {
     const handleToggle = () => {
         setOpenList();
         setSelected(["", "", 0, 0]);
+    };
+
+    const handleNearBy = () => {
+        if (myMap) {
+            const newCenter = myMap.getCenter();
+            setLocation([newCenter.getLat(), newCenter.getLng()]);
+            setVisible(false);
+            setSelected(["", "", 0, 0]);
+        }
     };
 
     return (
@@ -268,6 +322,17 @@ const KakaoMap: React.FC<{ list: ListProps[] }> = ({ list }) => {
                     />
                 )}
             </SliderWrapper>
+            {visible && (
+                <NearbyIcon onClick={handleNearBy}>
+                    <img
+                        alt="search-nearby-icon"
+                        src="/svg/search.svg"
+                        height="20"
+                        width="20"
+                    />
+                    현재 지도에서 찾기
+                </NearbyIcon>
+            )}
         </Wrapper>
     );
 };

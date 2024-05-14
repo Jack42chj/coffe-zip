@@ -32,7 +32,7 @@ $ yan dev
 
 https://coffeezip.vercel.app
 
-## 📖 관련 블로그(Blog)
+## 📖 블로그(Blog)
 
 https://velog.io/@hojinch99/series/야간-카페-지도-서비스
 
@@ -59,8 +59,8 @@ https://velog.io/@hojinch99/series/야간-카페-지도-서비스
 
 ## 멤버 구성(Members)
 
+-   **최호진(hojinch99@gmail.com) - 개발, 디자인, 카페 데이터 수집**
 -   **김동주(gggg8657@gmail.com) - PM, 디자인**
--   **최호진(hojinch99@gmail.com) - 개발, 디자인**
 
 ## 📚 기술 스택(Stacks)
 
@@ -186,9 +186,10 @@ https://velog.io/@hojinch99/series/야간-카페-지도-서비스
 
 #### ☕ 주변 카페 데이터 조회(Data Fetching)
 
--   현재 사용자의 GPS 값을 기반으로 2km 이내에 있는 24시간/무인 카페 리스트를 조회 후 지도에 마커 보여주기
+-   최조 페이지 진입 시 현재 사용자의 GPS 값을 기반으로 2km 이내에 있는 24시간/무인 카페 리스트를 조회 후 지도에 마커 표시
 -   한 페이지 내에서 최대 카페 데이터 5개 및 지도 최대 마커 5개 제한, 그 외 모두 페이지네이션 활용
 -   React-Query를 사용한 데이터 캐싱 지원
+-   지도를 이동하면 이동한 지도의 중심을 기준으로 카페 리스트를 조회 기능
 
 #### 🔍 장소/주소 검색 기능(Search)
 
