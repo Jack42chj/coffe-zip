@@ -42,7 +42,7 @@ const IconWrapper = styled.div`
     background-color: #ffffff;
     border-radius: 100%;
     padding: 10px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
     z-index: 998;
     &:hover {
         opacity: 0.8;
@@ -67,6 +67,7 @@ const NearbyIcon = styled.div`
     padding: 8px 12px;
     border-radius: 20px;
     left: 50%;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
     transform: translateX(-50%);
     font-size: 14px;
     gap: 6px;
@@ -74,10 +75,11 @@ const NearbyIcon = styled.div`
         opacity: 0.9;
     }
     @media (max-width: 1024px) {
-        top: 19%;
+        top: 90px;
     }
     @media (min-width: 1025px) {
-        bottom: 10%;
+        bottom: 5%;
+        font-size: 16px;
     }
 `;
 
@@ -90,7 +92,7 @@ const SliderWrapper = styled.div`
     justify-content: center;
     border-radius: 100%;
     padding: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
     z-index: 998;
     bottom: 10%;
     right: 12px;
