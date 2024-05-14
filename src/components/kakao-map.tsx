@@ -15,7 +15,7 @@ const Wrapper = styled.div`
 
 const Kakao = styled.div<ActiveProps>`
     width: 100%;
-    height: ${(props) => (props.$active ? "54vh" : "87.8vh")};
+    height: ${(props) => (props.$active ? "54vh" : "90vh")};
     @media (min-width: 1025px) {
         height: 100vh;
     }
@@ -33,7 +33,7 @@ const Search = styled.div`
     }
 `;
 
-const IconWrapper = styled.div`
+const IconWrapper = styled.div<ActiveProps>`
     position: absolute;
     cursor: pointer;
     border: none;
@@ -42,13 +42,13 @@ const IconWrapper = styled.div`
     background-color: #ffffff;
     border-radius: 100%;
     padding: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.3);
     z-index: 998;
     &:hover {
-        opacity: 0.8;
+        background-color: #f8f9fa;
     }
     @media (max-width: 1024px) {
-        bottom: 10%;
+        bottom: ${(props) => (props.$active ? "10%" : "50px")};
         left: 12px;
     }
     @media (min-width: 1025px) {
@@ -67,12 +67,12 @@ const NearbyIcon = styled.div`
     padding: 8px 12px;
     border-radius: 20px;
     left: 50%;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.2);
     transform: translateX(-50%);
     font-size: 14px;
     gap: 6px;
     &:hover {
-        opacity: 0.9;
+        background-color: #f8f9fa;
     }
     @media (max-width: 1024px) {
         top: 90px;
@@ -83,7 +83,7 @@ const NearbyIcon = styled.div`
     }
 `;
 
-const SliderWrapper = styled.div`
+const SliderWrapper = styled.div<ActiveProps>`
     position: absolute;
     cursor: pointer;
     background-color: #ffffff;
@@ -91,13 +91,13 @@ const SliderWrapper = styled.div`
     display: flex;
     justify-content: center;
     border-radius: 100%;
-    padding: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    padding: 10px;
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.2);
     z-index: 998;
-    bottom: 10%;
+    bottom: ${(props) => (props.$active ? "10%" : "50px")};
     right: 12px;
     &:hover {
-        opacity: 0.8;
+        background-color: #f8f9fa;
     }
     @media (min-width: 1025px) {
         display: none;
@@ -299,7 +299,7 @@ const KakaoMap: React.FC<{ list: ListProps[] }> = ({ list }) => {
             <Search>
                 <SearchBox />
             </Search>
-            <IconWrapper onClick={onClickLocate}>
+            <IconWrapper onClick={onClickLocate} $active={openList}>
                 <img
                     alt="location-icon"
                     src="/svg/location.svg"
@@ -307,7 +307,7 @@ const KakaoMap: React.FC<{ list: ListProps[] }> = ({ list }) => {
                     width="20"
                 />
             </IconWrapper>
-            <SliderWrapper onClick={handleToggle}>
+            <SliderWrapper onClick={handleToggle} $active={openList}>
                 {openList ? (
                     <img
                         alt="arrow-down-icon"
