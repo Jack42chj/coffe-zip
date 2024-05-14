@@ -7,6 +7,7 @@ interface LocationType {
     setLocation: (newLocation: [number, number]) => void;
     setSelected: (newSelected: [string, string, number, number]) => void;
     setOpenList: () => void;
+    setOpenListTrue: () => void;
 }
 
 const MapStore = create<LocationType>((set) => ({
@@ -20,6 +21,7 @@ const MapStore = create<LocationType>((set) => ({
         set((state) => ({ ...state, selected: newSelected })),
     setOpenList: () =>
         set((state) => ({ ...state, openList: !state.openList })),
+    setOpenListTrue: () => set((state) => ({ ...state, openList: true })),
 }));
 
 export default MapStore;

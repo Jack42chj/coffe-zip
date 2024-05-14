@@ -1,13 +1,9 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-import { ListProps } from "../interfacce/list-interface";
+import { ActiveProps, ListProps } from "../interfacce/list-interface";
 import MapStore from "../stores/map-store";
 import SearchBox from "./search-box";
 import CustomOverlay from "./custom-overlay";
-
-interface ActiveProps {
-    $active: boolean;
-}
 
 const Wrapper = styled.div`
     position: relative;
@@ -36,6 +32,7 @@ const Search = styled.div`
 const IconWrapper = styled.div<ActiveProps>`
     position: absolute;
     cursor: pointer;
+    z-index: 998;
     border: none;
     display: flex;
     justify-content: center;
@@ -43,17 +40,25 @@ const IconWrapper = styled.div<ActiveProps>`
     border-radius: 100%;
     padding: 10px;
     box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.3);
-    z-index: 998;
     &:hover {
         background-color: #f8f9fa;
     }
-    @media (max-width: 1024px) {
-        bottom: ${(props) => (props.$active ? "10%" : "50px")};
-        left: 12px;
+    &.current {
+        @media (max-width: 1024px) {
+            bottom: ${(props) => (props.$active ? "10%" : "50px")};
+            left: 12px;
+        }
+        @media (min-width: 1025px) {
+            bottom: 5%;
+            right: 2%;
+        }
     }
-    @media (min-width: 1025px) {
-        bottom: 5%;
-        right: 2%;
+    &.slider {
+        bottom: ${(props) => (props.$active ? "10%" : "50px")};
+        right: 12px;
+        @media (min-width: 1025px) {
+            display: none;
+        }
     }
 `;
 
@@ -83,27 +88,6 @@ const NearbyIcon = styled.div`
     }
 `;
 
-const SliderWrapper = styled.div<ActiveProps>`
-    position: absolute;
-    cursor: pointer;
-    background-color: #ffffff;
-    border: none;
-    display: flex;
-    justify-content: center;
-    border-radius: 100%;
-    padding: 10px;
-    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.2);
-    z-index: 998;
-    bottom: ${(props) => (props.$active ? "10%" : "50px")};
-    right: 12px;
-    &:hover {
-        background-color: #f8f9fa;
-    }
-    @media (min-width: 1025px) {
-        display: none;
-    }
-`;
-
 const KakaoMap: React.FC<{ list: ListProps[] }> = ({ list }) => {
     const {
         location,
@@ -112,6 +96,7 @@ const KakaoMap: React.FC<{ list: ListProps[] }> = ({ list }) => {
         setOpenList,
         setSelected,
         setLocation,
+        setOpenListTrue,
     } = MapStore();
     const [myMap, setMyMap] = useState<kakao.maps.Map | null>(null);
     const [markers, setMarkers] = useState<kakao.maps.Marker[]>([]);
@@ -290,6 +275,7 @@ const KakaoMap: React.FC<{ list: ListProps[] }> = ({ list }) => {
             setLocation([newCenter.getLat(), newCenter.getLng()]);
             setVisible(false);
             setSelected(["", "", 0, 0]);
+            setOpenListTrue();
         }
     };
 
@@ -299,7 +285,11 @@ const KakaoMap: React.FC<{ list: ListProps[] }> = ({ list }) => {
             <Search>
                 <SearchBox />
             </Search>
-            <IconWrapper onClick={onClickLocate} $active={openList}>
+            <IconWrapper
+                className="current"
+                $active={openList}
+                onClick={onClickLocate}
+            >
                 <img
                     alt="location-icon"
                     src="/svg/location.svg"
@@ -307,7 +297,11 @@ const KakaoMap: React.FC<{ list: ListProps[] }> = ({ list }) => {
                     width="20"
                 />
             </IconWrapper>
-            <SliderWrapper onClick={handleToggle} $active={openList}>
+            <IconWrapper
+                className="slider"
+                $active={openList}
+                onClick={handleToggle}
+            >
                 {openList ? (
                     <img
                         alt="arrow-down-icon"
@@ -323,12 +317,12 @@ const KakaoMap: React.FC<{ list: ListProps[] }> = ({ list }) => {
                         width="20"
                     />
                 )}
-            </SliderWrapper>
+            </IconWrapper>
             {visible && (
                 <NearbyIcon onClick={handleNearBy}>
                     <img
-                        alt="search-nearby-icon"
-                        src="/svg/search.svg"
+                        alt="cafe-nearby-icon"
+                        src="/svg/cafe.svg"
                         height="20"
                         width="20"
                     />

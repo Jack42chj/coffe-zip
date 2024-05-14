@@ -15,3 +15,8 @@ export interface PageProps {
     page: number;
     totalPage: number;
 }
+
+// 리스트 열고 닫기 인터페이스
+export interface ActiveProps {
+    $active: boolean;
+}
