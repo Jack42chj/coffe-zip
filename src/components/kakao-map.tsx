@@ -210,7 +210,6 @@ const KakaoMap: React.FC<{ list: ListProps[]; page: number }> = ({
         };
 
         if (myMap) {
-            myMap.setLevel(4);
             if (list) {
                 const CafeMarkers = createMarkers(list, myMap);
                 setMarkers(CafeMarkers);
@@ -244,10 +243,12 @@ const KakaoMap: React.FC<{ list: ListProps[]; page: number }> = ({
                     overlay.setMap(null)
                 );
             }
-            kakao.maps.event.addListener(myMap, "dragend", () => {
-                setVisible(true);
-            });
-            kakao.maps.event.addListener(myMap, "zoom_changed", () => {});
+            kakao.maps.event.addListener(myMap, "dragend", () =>
+                setVisible(true)
+            );
+            kakao.maps.event.addListener(myMap, "zoom_changed", () =>
+                setVisible(true)
+            );
         }
         //eslint-disable-next-line react-hooks/exhaustive-deps
     }, [list]);
@@ -292,6 +293,7 @@ const KakaoMap: React.FC<{ list: ListProps[]; page: number }> = ({
             setVisible(false);
             setSelected(["", "", 0, 0]);
             setOpenListTrue();
+            myMap.setLevel(6);
         }
     };
 
