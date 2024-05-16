@@ -152,7 +152,10 @@ const Home = () => {
 
     return (
         <Wrapper>
-            <KakaoMap list={paginatedCafeList[currentPage]} />
+            <KakaoMap
+                list={paginatedCafeList[currentPage]}
+                page={currentPage}
+            />
             <Container className={openList ? "slide-down" : "slide-up"}>
                 <Box>
                     <Logo onClick={() => window.location.reload()}>

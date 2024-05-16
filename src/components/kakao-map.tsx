@@ -88,7 +88,10 @@ const NearbyIcon = styled.div`
     }
 `;
 
-const KakaoMap: React.FC<{ list: ListProps[] }> = ({ list }) => {
+const KakaoMap: React.FC<{ list: ListProps[]; page: number }> = ({
+    list,
+    page,
+}) => {
     const {
         location,
         selected,
@@ -207,11 +210,24 @@ const KakaoMap: React.FC<{ list: ListProps[] }> = ({ list }) => {
         };
 
         if (myMap) {
-            myMap.setLevel(6);
+            myMap.setLevel(4);
             if (list) {
                 const CafeMarkers = createMarkers(list, myMap);
                 setMarkers(CafeMarkers);
                 CafeMarkers.forEach((marker) => marker.setMap(myMap));
+                if (page === 0) {
+                    const originalPosition = new kakao.maps.LatLng(
+                        location[0],
+                        location[1]
+                    );
+                    myMap.setCenter(originalPosition);
+                } else {
+                    const newPosition = new kakao.maps.LatLng(
+                        list[0].lat,
+                        list[0].lng
+                    );
+                    myMap.setCenter(newPosition);
+                }
             }
             if (selected[0] !== "") {
                 const overlay = CustomOverlay(
@@ -229,16 +245,9 @@ const KakaoMap: React.FC<{ list: ListProps[] }> = ({ list }) => {
                 );
             }
             kakao.maps.event.addListener(myMap, "dragend", () => {
-                const center = myMap.getCenter();
-                if (
-                    center.getLat().toFixed(2) !== location[0].toFixed(2) &&
-                    center.getLng().toFixed(2) !== location[1].toFixed(2)
-                ) {
-                    setVisible(true);
-                } else {
-                    setVisible(false);
-                }
+                setVisible(true);
             });
+            kakao.maps.event.addListener(myMap, "zoom_changed", () => {});
         }
         //eslint-disable-next-line react-hooks/exhaustive-deps
     }, [list]);
