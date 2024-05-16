@@ -8,17 +8,15 @@ const Wrapper = styled.div`
     align-items: center;
 `;
 
-const Loading = () => {
-    return (
-        <Wrapper>
-            <img
-                alt="loading-icon"
-                src="/webp/loading.webp"
-                width="128"
-                height="128"
-            />
-        </Wrapper>
-    );
-};
+const Loading = () => (
+    <Wrapper>
+        <img
+            alt="loading-icon"
+            src="/webp/loading.webp"
+            width="128"
+            height="128"
+        />
+    </Wrapper>
+);
 
 export default Loading;

@@ -18,8 +18,7 @@ const Wrapper = styled.div`
     animation: ${animation} 2s infinite linear;
 `;
 
-const SkeletonUI = () => {
-    return Array.from({ length: 5 }, (_, index) => <Wrapper key={index} />);
-};
+const SkeletonUI = () =>
+    Array.from({ length: 5 }, (_, index) => <Wrapper key={index} />);
 
 export default SkeletonUI;

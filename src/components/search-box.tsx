@@ -68,7 +68,7 @@ const SearchItem = styled.div`
 `;
 
 const SearchBox = () => {
-    const { setLocation, setSelected } = MapStore();
+    const { setLocation, setSelected, setOpenListTrue } = MapStore();
     const [keyword, setKeyword] = useState("");
     const [placeList, setPlaceList] = useState<
         kakao.maps.services.PlacesSearchResultItem[]
@@ -89,7 +89,7 @@ const SearchBox = () => {
         ) => {
             if (status === kakao.maps.services.Status.OK) {
                 setPlaceList(data);
-            } else return;
+            }
         };
         ps.keywordSearch(key, placesSearchCB);
     };
@@ -107,6 +107,7 @@ const SearchBox = () => {
         setSelected(["", "", 0, 0]);
         setKeyword(name);
         setOpen(false);
+        setOpenListTrue();
     };
 
     // 검색어 한번에 지우는 함수

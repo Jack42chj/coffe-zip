@@ -60,6 +60,7 @@ const Container = styled.div`
         }
         &.slide-up {
             animation-name: ${slideUp};
+            display: none;
         }
     }
 `;
@@ -101,15 +102,16 @@ const Home = () => {
         refetch: refetchCafeList,
         isLoading,
     } = useQuery({
-        queryKey: ["cafe_list", location],
+        queryKey: ["cafeList", location],
         queryFn: async () => getCafeList(location[0], location[1]),
     });
 
     // 페이지네이션 페이지 만들기 함수
     const paginateList = (list: ListProps[]) => {
         const pages = [];
-        for (let i = 0; i < list.length; i += 5)
+        for (let i = 0; i < list.length; i += 5) {
             pages.push(list.slice(i, i + 5));
+        }
         return pages;
     };
 
