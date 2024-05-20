@@ -43,6 +43,12 @@ const Titie = styled.div`
 
 const BoldText = styled.span`
     font-weight: bold;
+    &.cafe-name {
+        max-width: 180px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
     &.title {
         margin-right: 4px;
     }
@@ -117,7 +123,9 @@ const List: React.FC<{
                         }
                     >
                         <RowBox className="title">
-                            <BoldText>{item.name}</BoldText>
+                            <BoldText className="cafe-name">
+                                {item.name}
+                            </BoldText>
                             {item.closed === null && (
                                 <div>
                                     <img

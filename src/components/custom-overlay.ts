@@ -8,7 +8,7 @@ const CustomOverlay = (
     const overlay = new window.kakao.maps.CustomOverlay({
         position: coPosition,
         clickable: true,
-        yAnchor: 1.15,
+        yAnchor: 1.08,
         zIndex: 999,
     });
 
@@ -17,17 +17,29 @@ const CustomOverlay = (
     content.style.position = "relative";
     content.style.backgroundColor = "#ffffff";
     content.style.borderRadius = "10px";
-    content.style.border = "1px solid #023048";
+    content.style.border = "none";
     content.style.width = "200px";
     content.style.height = "105px";
     content.style.display = "flex";
     content.style.flexDirection = "column";
     content.style.gap = "4px";
     content.style.padding = "8px";
-    content.style.color = "#023048";
+    content.style.color = "#000000";
     content.style.fontSize = "14px";
     content.style.fontWeight = "bold";
-    content.style.boxShadow = "2px 2px 2px 0px rgba(0, 0, 0, 0.4)";
+    content.style.boxShadow = "2px 4px 4px 0px rgba(0, 0, 0, 0.2)";
+
+    // 말 풍선 꼬리
+    const afterElement = document.createElement("div");
+    afterElement.style.content = '""';
+    afterElement.style.position = "absolute";
+    afterElement.style.left = "50%";
+    afterElement.style.bottom = "-10px";
+    afterElement.style.transform = "translateX(-50%)";
+    afterElement.style.borderTop = "12px solid #ffffff";
+    afterElement.style.borderLeft = "6px solid transparent";
+    afterElement.style.borderRight = "6px solid transparent";
+    afterElement.style.borderBottom = "0px solid transparent";
 
     // 첫 번째 내부 div 생성
     const innerDiv1 = document.createElement("div");
@@ -54,18 +66,6 @@ const CustomOverlay = (
     innerDiv3.style.fontSize = "16px";
     innerDiv3.style.fontWeight = "bold";
     innerDiv3.style.color = "#000000";
-
-    // close div 생성
-    const closeDiv = document.createElement("div");
-    closeDiv.style.cursor = "pointer";
-    closeDiv.onclick = () => overlay.setMap(null);
-
-    // close div 내부에 이미지 요소 생성
-    const closeImg = document.createElement("img");
-    closeImg.src = "/svg/close.svg";
-    closeImg.width = 20;
-    closeImg.height = 20;
-    closeImg.alt = "close-icon";
 
     // copyBtn div 생성
     const copyBtn = document.createElement("div");
@@ -119,10 +119,6 @@ const CustomOverlay = (
     // 길찾기 텍스트 생성
     const guideText = document.createTextNode("길찾기");
 
-    // closeImg를 closeDiv에 추가
-    closeDiv.appendChild(closeImg);
-    innerDiv1.appendChild(closeDiv);
-
     // link에 kakao map logo 이미지와 길찾기 텍스트 추가
     link.appendChild(kakaoMapLogo);
     link.appendChild(guideText);
@@ -135,6 +131,7 @@ const CustomOverlay = (
     content.appendChild(innerDiv1);
     content.appendChild(innerDiv2);
     content.appendChild(innerDiv3);
+    content.appendChild(afterElement);
 
     // overlay에 content div 설정
     overlay.setContent(content);

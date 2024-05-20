@@ -198,6 +198,7 @@ const KakaoMap: React.FC<{ list: ListProps[]; page: number }> = ({
                     }
                     currentOverlay = overlay;
                     overlay.setMap(map);
+                    map.setCenter(overlay.getPosition());
                     setCtOverlay(overlay);
                 });
                 kakao.maps.event.addListener(map, "click", () => {
