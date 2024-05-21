@@ -294,7 +294,6 @@ const KakaoMap: React.FC<{ list: ListProps[]; page: number }> = ({
             setVisible(false);
             setSelected(["", "", 0, 0]);
             setOpenListTrue();
-            myMap.setLevel(6);
         }
     };
 

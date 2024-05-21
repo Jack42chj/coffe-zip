@@ -47,9 +47,11 @@ const IconWrapper = styled.div<IconProps>`
 `;
 
 const LogoWrapper = styled.div`
+    @media (min-width: 1025px) {
+        display: none;
+    }
     width: 100%;
-    height: 44px;
-    background-image: url("./webp/wrapper.webp");
+    height: 14px;
 `;
 
 const TabBar: React.FC<PageProps> = ({ handleChangePage, page, totalPage }) => {
