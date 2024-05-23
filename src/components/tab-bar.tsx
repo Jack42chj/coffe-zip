@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { PageProps } from "../interfacce/list-interface";
+import MapStore from "../stores/map-store";
 
 interface IconProps {
     $active: boolean;
@@ -56,15 +57,27 @@ const LogoWrapper = styled.div`
 
 const TabBar: React.FC<PageProps> = ({ handleChangePage, page, totalPage }) => {
     // 다음 페이지 이동 함수
+    const { setDirection } = MapStore();
     const handleClickNext = (page: number) => {
         if (totalPage === page) return;
-        else handleChangePage(page + 1);
+        else {
+            handleChangePage(page + 1);
+            setDirection("right");
+        }
     };
 
     // 이전 페이지 이동 함수
     const handleClickPrev = (page: number) => {
         if (page === 0) return;
-        else handleChangePage(page - 1);
+        else {
+            handleChangePage(page - 1);
+            setDirection("left");
+        }
+    };
+
+    const handleClickHome = () => {
+        handleChangePage(0);
+        setDirection("left");
     };
 
     return (
@@ -92,7 +105,7 @@ const TabBar: React.FC<PageProps> = ({ handleChangePage, page, totalPage }) => {
                 </IconWrapper>
                 <IconWrapper
                     $active={page !== 0 ? true : false}
-                    onClick={() => handleChangePage(0)}
+                    onClick={handleClickHome}
                 >
                     <svg
                         xmlns="http://www.w3.org/2000/svg"

@@ -1,7 +1,25 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { ListProps } from "../interfacce/list-interface";
 import SkeletonUI from "./skeleton-ui";
 import MapStore from "../stores/map-store";
+
+const slideLeft = keyframes`
+    0% {
+        transform: translateX(-50%);
+    }
+    100% {
+        transform: translateX(0%);
+    }
+`;
+
+const slideRight = keyframes`
+    0% {
+        transform: translateX(50%);
+    }
+    100% {
+        transform: translateX(0%);
+    }
+`;
 
 const Wrapper = styled.div`
     display: flex;
@@ -11,9 +29,10 @@ const Wrapper = styled.div`
     margin-top: 14px;
     overflow-y: scroll;
     padding: 0px 20px;
+    overflow-x: hidden;
 `;
 
-const Item = styled.div`
+const Item = styled.div<{ $direction: string }>`
     cursor: pointer;
     width: 100%;
     min-height: 40px;
@@ -21,6 +40,11 @@ const Item = styled.div`
     justify-content: space-between;
     padding: 6px 0px;
     color: #000000;
+    animation: ${({ $direction }) => {
+            if ($direction === "") return;
+            return $direction === "right" ? slideRight : slideLeft;
+        }}
+        0.5s forwards;
 `;
 
 const Titie = styled.div`
@@ -92,7 +116,7 @@ const List: React.FC<{
     list: ListProps[];
     isLoading: boolean;
 }> = ({ list, isLoading }) => {
-    const { setSelected } = MapStore();
+    const { setSelected, direction } = MapStore();
     const handleClickList = (
         cafe: string,
         address: string,
@@ -112,6 +136,7 @@ const List: React.FC<{
             ) : list ? (
                 list.map((item) => (
                     <Item
+                        $direction={direction}
                         key={item.name}
                         onClick={() =>
                             handleClickList(

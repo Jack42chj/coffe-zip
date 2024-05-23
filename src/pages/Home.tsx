@@ -93,7 +93,8 @@ const Logo = styled.div`
 `;
 
 const Home = () => {
-    const { setLocation, location, setSelected, openList } = MapStore();
+    const { setLocation, location, setSelected, openList, setDirection } =
+        MapStore();
     const [currentPage, setCurrentPage] = useState(0);
 
     // 카페 데이터 패칭
@@ -146,6 +147,7 @@ const Home = () => {
         if (location[0] && location[1]) {
             refetchCafeList();
             setCurrentPage(0);
+            setDirection("");
         }
         //eslint-disable-next-line react-hooks/exhaustive-deps
     }, [location]);
