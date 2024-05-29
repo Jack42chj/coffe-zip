@@ -46,7 +46,8 @@ const Wrapper = styled.div`
 `;
 
 const gaTrackId = import.meta.env.VITE_GOOGLE_ANALYTICS_ID;
-ReactGA.initialize(gaTrackId);
+ReactGA.initialize(gaTrackId, { debug: true });
+ReactGA.pageview(window.location.pathname);
 
 const App = () => {
     return (
