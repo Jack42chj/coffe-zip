@@ -3,7 +3,6 @@ import styled, { createGlobalStyle } from "styled-components";
 import reset from "styled-reset";
 import { Suspense, lazy } from "react";
 import Loading from "./components/loading";
-import ReactGA from "react-ga4";
 
 const Home = lazy(() => import("./pages/Home"));
 
@@ -44,9 +43,6 @@ const Wrapper = styled.div`
     height: 100vh;
     background-color: #ffffff;
 `;
-
-const gaTrackId = import.meta.env.VITE_GOOGLE_ANALYTICS_ID;
-ReactGA.initialize(gaTrackId);
 
 const App = () => {
     return (
