@@ -211,6 +211,12 @@ https://velog.io/@hojinch99/series/야간-카페-지도-서비스
 -   상세보기 창에서 주소 복사 기능으로 클립보드에 카페 주소 복사 기능 구현
 -   상세보기 창에서 주소 길 찾기 기능으로 카카오 맵에서 현재 카페 주소를 도착지로 설정
 
+## 웹 페이지 속도 측정(렌더링 속도)
+
+![render](https://github.com/Jack42chj/coffe-zip/assets/86552441/1d2a52ca-c057-4b60-8cd1-77428bd45277)
+
+https://tools.pingdom.com/
+
 ## 🔥 트러블 슈팅(Trouble Shooting)
 
 #### 📚 useEffect 카카오 지도 중복 생성(Map Duplication)
