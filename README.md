@@ -1,4 +1,4 @@
-# 🦉 카페 찾는 부엉이 - 야간 운영 카페 찾기 서비스(웹/앱)
+# 🦉 카페 찾는 부엉이 - 밤에도 영업하는 카페 찾기 서비스
 
 <div>
   <img src="https://github.com/Jack42chj/coffe-zip/assets/86552441/7e022df5-d267-4542-be8c-391ae9fa4371">
